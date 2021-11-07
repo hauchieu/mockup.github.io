@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumar+One+Outline&family=Quantico:ital,wght@0,400;1,700&family=Schoolbell&family=Tourney&display=swap');
+
+body {
+  font: .9em/1.2 Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: inline-block;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0,1fr));
+  grid-gap: 20px;
+}
+
+
+aside {
+    border-right: 1px solid #999;
+}
+
+
+article {
+margin-left: 2%;
+grid-column: 4 / 13;
+grid-row: 2;
+}
+
+aside {
+grid-column: 1 / 4;
+grid-row: 2;
+}
+.today{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+
+
+}
+
+#cover {
+padding: 150px;
+background: url(https://i.pinimg.com/originals/49/55/44/49554431a0b3682344cc94ef1956198d.jpg);
+
+background-repeat: no-repeat;
+background-size:  100%;
+}
+
+.week {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+grid-auto-rows: minmax(100px, auto);
+gap: 20px;
+}
+
+.task{
+  font-family: 'Quantico';
+  font-size: 26px;  
+}
+.play{
+  font-family: 'Tourney';
+  font-size: 38px;
+}
+
+#img {
+  margin-right: 20px;
+  width: 100%;
+  max-width: 230px;
+}
+
+
+/* task */
+body{
+  /* margin-top:20px; */
+  background: #f8f8f8;
+}
+
+/* .todo-nav {
+  margin-top: 10px
+} */
+
+.todo-list {
+  margin: 10px 0
+}
+
+.todo-list .todo-item {
+  padding: 15px;
+  margin: 5px 0;
+  border-radius: 0;
+  background: #FBFBFB;
+  
+}
+
+.todo-list.only-active .todo-item.complete {
+  display: none
+}
+
+.todo-list.only-active .todo-item:not(.complete) {
+  display: block
+}
+
+.todo-list.only-complete .todo-item:not(.complete) {
+  display: none
+}
+
+.todo-list.only-complete .todo-item.complete {
+  display: block
+}
+
+.todo-list .todo-item.complete span {
+  text-decoration: line-through
+}
+
+.remove-todo-item {
+  color: #ccc;
+  visibility: hidden
+}
+
+.remove-todo-item:hover {
+  color: #5f5f5f
+}
+
+.todo-item:hover .remove-todo-item {
+  visibility: visible
+}
+
+div.checker {
+  width: 18px;
+  height: 18px
+}
+
+div.checker input,
+div.checker span {
+  width: 18px;
+  height: 18px
+}
+
+div.checker span {
+  display: -moz-inline-box;
+  display: inline-block;
+  zoom: 1;
+  text-align: center;
+  background-position: 0 -260px;
+}
+
+div.checker, div.checker input, div.checker span {
+  width: 19px;
+  height: 19px;
+}
+
+div.checker, div.radio, div.uploader {
+  position: relative;
+}
+
+div.button, div.button *, div.checker, div.checker *, div.radio, div.radio *, div.selector, div.selector *, div.uploader, div.uploader * {
+  margin: 0;
+  padding: 0;
+}
+
+div.button, div.checker, div.radio, div.selector, div.uploader {
+  display: -moz-inline-box;
+  display: inline-block;
+  zoom: 1;
+  vertical-align: middle;
+}
+
+.card {
+  padding: 15px;
+  margin-bottom: 10px;
+  /* border: initial; */
+  background: #fff;
+  border-radius: calc(.15rem - 1px);
+  border-color: white;
+  /* box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04); */
+}
+
+/* Login Form */
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.border-md {
+  border-width: 2px;
+}
+
+.btn-facebook {
+  background: #405D9D;
+  border: none;
+}
+
+.btn-facebook:hover, .btn-facebook:focus {
+  background: #314879;
+}
+
+.btn-twitter {
+  background: #42AEEC;
+  border: none;
+}
+
+.btn-twitter:hover, .btn-twitter:focus {
+  background: #1799e4;
+}
+
+
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+
+body {
+  min-height: 100vh;
+}
+
+.form-control:not(select) {
+  padding: 1.5rem 0.5rem;
+}
+
+select.form-control {
+  height: 52px;
+  padding-left: 0.5rem;
+}
+
+.form-control::placeholder {
+  color: #ccc;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+/* todolist */
+
+button, label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* .btn {
+
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size:25px;
+    color: white;
+  background-color: #E2C275;
+
+} */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  
+  
+}
+
+tr:hover {background-color: rgb(211, 211, 157);}
+
+
+body {
+  color: #404E67;
+  background: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+}
+.table-wrapper {
+  /* width: 700px; */
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;	
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title {
+  padding-bottom: 10px;
+  margin: 0 0 10px;
+}
+.table-title h2 {
+  margin: 6px 0 0;
+  font-size: 22px;
+}
+.table-title .add-new {
+  float: right;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: none;
+  min-width: 100px;
+  border-radius: 50px;
+  line-height: 13px;
+}
+.table-title .share {
+  float: right;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: none;
+  min-width: 80px;
+  border-radius: 50px;
+  line-height: 13px;
+  background-color: #E2C275;
+  border-color: #E2C275;
+  padding-right: 20px;
+}
+
+.table-title .log-out {
+  float: right;
+  float: inline-end;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: none;
+  min-width: 80px;
+  border-radius: 50px;
+  line-height: 13px;
+  background-color: #E2C275;
+  border-color: #E2C275;
+  padding-right: 20px;
+}
+
+
+.table-title .add-new i {
+  margin-right: 4px;
+}
+table.table {
+  table-layout: fixed;
+}
+table.table tr th, table.table tr td {
+  border-color: #e9e9e9;
+}
+table.table th i {
+  font-size: 13px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+table.table th:last-child {
+  width: 100px;
+}
+table.table td a {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  min-width: 24px;
+}    
+table.table td a.add {
+  color: #27C46B;
+}
+table.table td a.edit {
+  color: #FFC107;
+}
+table.table td a.delete {
+  color: #E34724;
+}
+table.table td i {
+  font-size: 19px;
+}
+table.table td a.add i {
+  font-size: 24px;
+  margin-right: -1px;
+  position: relative;
+  top: 3px;
+}    
+table.table .form-control {
+  height: 32px;
+  line-height: 32px;
+  box-shadow: none;
+  border-radius: 2px;
+}
+table.table .form-control.error {
+  border-color: #f50000;
+}
+table.table td .add {
+  display: none;
+}
+
+

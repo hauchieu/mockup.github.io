@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap Table with Add and Delete Row Feature</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<style>
+
+/* body {
+    color: #404E67;
+    background: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+}
+.table-wrapper {
+    width: 700px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;	
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title {
+    padding-bottom: 10px;
+    margin: 0 0 10px;
+}
+.table-title h2 {
+    margin: 6px 0 0;
+    font-size: 22px;
+}
+.table-title .add-new {
+    float: right;
+    height: 30px;
+    font-weight: bold;
+    font-size: 12px;
+    text-shadow: none;
+    min-width: 100px;
+    border-radius: 50px;
+    line-height: 13px;
+}
+.table-title .add-new i {
+    margin-right: 4px;
+}
+table.table {
+    table-layout: fixed;
+}
+table.table tr th, table.table tr td {
+    border-color: #e9e9e9;
+}
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+table.table th:last-child {
+    width: 100px;
+}
+table.table td a {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+    min-width: 24px;
+}    
+table.table td a.add {
+    color: #27C46B;
+}
+table.table td a.edit {
+    color: #FFC107;
+}
+table.table td a.delete {
+    color: #E34724;
+}
+table.table td i {
+    font-size: 19px;
+}
+table.table td a.add i {
+    font-size: 24px;
+    margin-right: -1px;
+    position: relative;
+    top: 3px;
+}    
+table.table .form-control {
+    height: 32px;
+    line-height: 32px;
+    box-shadow: none;
+    border-radius: 2px;
+}
+table.table .form-control.error {
+    border-color: #f50000;
+}
+table.table td .add {
+    display: none;
+} */
+</style>
+<script>
+$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+	var actions = $("table td:last-child").html();
+	// Append table with add row form on add new button click
+    $(".add-new").click(function(){
+		$(this).attr("disabled", "disabled");
+		var index = $("table tbody tr:last-child").index();
+        // var row = '<tr>' +
+        //     '<td><input type="checkbok" class="form-control" name="done" id="done"></td>' +
+        //     '<td><input type="text" class="form-control" name="department" id="department"></td>' +
+        //     '<td><input type="date" class="form-control" name="date" id="date"></td>' +
+        //     '<td><select type="text" class="form-control" name="department" id="department"></td>' +
+        //     '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
+		// 	'<td>' + actions + '</td>' +
+        // '</tr>';
+        var row = '<tr>';
+        row += '<td><input <input type="checkbox"></td>';
+        row += '<td><input type="text" class="form-control" name="name" id="name"></td>';
+        row += '<td><input type="date" ></td>';
+        row += '<td>';
+        row += '<select>';    
+        row += '<option class="high" value="2" style="color:red">Saab</option>';
+        row += '<option class="medium" value="3" style="color:yellow">Mercedes</option>';
+        row += '<option value="low" style="background-color:green">Audi</option>';
+        row += '</select>';
+        row += '</td>';
+        row += '<td><input type="text" class="form-control" name="phone" id="phone"></td>';
+        row += '<td>' + actions + '</td>';
+        row += '</tr>';
+    	$("table").append(row);		
+		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+	// Add row on add button click
+	$(document).on("click", ".add", function(){
+		var empty = false;
+		var input = $(this).parents("tr").find('input[type="text"]');
+        input.each(function(){
+			if(!$(this).val()){
+				$(this).addClass("error");
+				empty = true;
+			} else{
+                $(this).removeClass("error");
+            }
+		});
+		$(this).parents("tr").find(".error").first().focus();
+		if(!empty){
+			input.each(function(){
+				$(this).parent("td").html($(this).val());
+			});			
+			$(this).parents("tr").find(".add, .edit").toggle();
+			$(".add-new").removeAttr("disabled");
+		}		
+    });
+	// Edit row on edit button click
+	$(document).on("click", ".edit", function(){		
+        $(this).parents("tr").find("td:not(:last-child)").each(function(){
+			$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+		});		
+		$(this).parents("tr").find(".add, .edit").toggle();
+		$(".add-new").attr("disabled", "disabled");
+    });
+	// Delete row on delete button click
+	$(document).on("click", ".delete", function(){
+        $(this).parents("tr").remove();
+		$(".add-new").removeAttr("disabled");
+    });
+});
+</script>
+</head>
+<body>
+
+    <div id="cover">
+    </div>
+    <div class="container">
+        <!-- Side bar -->
+
+        <aside>
+            <!-- <a href="#homeSubmenu" >
+                <span class="material-icons">
+                    home
+                    </span>
+                Home
+                </a>
+            <a href="#">
+                <span class="material-icons">
+                    calendar_today
+                    </span>
+            FAQ
+            </a> -->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.html">
+                        <span class="material-icons">home</span> Home</a>
+                        <i class="bi bi-calendar-event"></i><a class="list-group-item list-group-item-action list-group-item-light p-3 active" href="nhap.html"><span class="material-icons">
+                        today
+                        </span> To-do-list</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="userprofile.html"><span class="material-icons">
+                        account_circle
+                        </span>My profile</a> <i class="bi bi-calendar-event"></i>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="login.html"><i class="fa fa-sign-out"></i>
+                        Log-out</a>
+                
+                </div>
+            </div>
+            <br>
+         
+            <h5>Weekly progress</h5>
+            <div class="progress" style ="height: 30px; margin-right: 20px;" >
+                <div class="progress-bar bg-secondary progress-bar-striped" style="width:60%"></div>
+              </div>
+              <br><br>
+            <img id="img" src="https://i.pinimg.com/564x/d5/c8/96/d5c896bb683459dba6053c77e4782fb6.jpg" width="fix">
+            <br><br>
+            <p class ="play">Work hard, Play hard</p></aside>
+        <!-- Main -->
+        <article>
+<div class="container-lg">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>To-do <b>List</b></h2></div>
+                    <div class="col-sm-4">
+                        <button id ="add_new" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                        <button type="button" class="btn btn-info share"><i class="fa fa-share-alt"></i> Share</button>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <colgroup>
+                    <col width="80" span="1">
+                    <col width="150" span="1">
+                    <col width="200" span="1">
+                    <col width=auto span="2">
+                    <col width="auto" span="1">
+                  </colgroup>
+                <thead>
+                    <tr>
+                        <th>Done</th>
+                        <th>Task</th>
+                        <th>Date</th>
+                        <th>Priority</th>
+                        <th>Note</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>John Doe</td>
+                        <td><input type="date" value="2021-11-12"></td>
+                        <td><input type="checkbox"></td>
+                        <td>(171) 555-2222</td>
+                        <td>
+                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                            <td><input type="checkbox"></td>
+                            <td>John Doe</td>
+                            <td><input type="date" value="2021-11-12"></td>
+                            <td><input type="checkbox"></td>
+                            <td>(171) 555-2222</td>
+                            <td>
+                                <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>John Doe</td>
+                        <td><input type="date" value="2021-11-12"></td>
+                        <td><input type="checkbox"></td>
+                        <td>(171) 555-2222</td>
+                        <td>
+                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>     
+        </article>
+</body>
+</html>
